@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Solar System</title>
+    <script src="script/aframe.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <a-scene background="color: #000">
+        <!-- Assets -->
+        <a-assets>
+            <img id="sun-texture" src="texture/2k_sun.jpg">
+            <img id="mercury-texture" src="texture/2k_mercury.jpg">
+            <img id="venus-texture" src="texture/2k_venus_atmosphere.jpg">
+            <img id="earth-texture" src="texture/2k_earth_daymap.jpg">
+            <img id="mars-texture" src="texture/2k_mars.jpg">
+            <img id="jupiter-texture" src="texture/2k_jupiter.jpg">
+            <img id="saturn-texture" src="texture/2k_saturn.jpg">
+            <img id="saturn-ring-texture" src="texture/2k_saturn_ring_alpha.png">
+            <img id="uranus-texture" src="texture/2k_uranus.jpg">
+            <img id="neptune-texture" src="texture/2k_neptune.jpg">
+            <img id="stars-texture" src="texture/2k_stars_milky_way.jpg">
+        </a-assets>
+
+        <!-- Starry background sky -->
+        <a-sky src="#stars-texture"></a-sky>
+
+        <!-- Orbital Paths -->
+        <a-ring position="0 0 0" rotation="-90 0 0" radius-inner="19.8" radius-outer="20.2" material="color: #888; opacity: 0.6; transparent: true; side: double"></a-ring>
+        <a-ring position="0 0 0" rotation="-90 0 0" radius-inner="29.8" radius-outer="30.2" material="color: #888; opacity: 0.6; transparent: true; side: double"></a-ring>
+        <a-ring position="0 0 0" rotation="-90 0 0" radius-inner="39.8" radius-outer="40.2" material="color: #888; opacity: 0.6; transparent: true; side: double"></a-ring>
+        <a-ring position="0 0 0" rotation="-90 0 0" radius-inner="54.8" radius-outer="55.2" material="color: #888; opacity: 0.6; transparent: true; side: double"></a-ring>
+        <a-ring position="0 0 0" rotation="-90 0 0" radius-inner="79.8" radius-outer="80.2" material="color: #888; opacity: 0.6; transparent: true; side: double"></a-ring>
+        <a-ring position="0 0 0" rotation="-90 0 0" radius-inner="104.8" radius-outer="105.2" material="color: #888; opacity: 0.6; transparent: true; side: double"></a-ring>
+        <a-ring position="0 0 0" rotation="-90 0 0" radius-inner="129.8" radius-outer="130.2" material="color: #888; opacity: 0.6; transparent: true; side: double"></a-ring>
+        <a-ring position="0 0 0" rotation="-90 0 0" radius-inner="159.8" radius-outer="160.2" material="color: #888; opacity: 0.6; transparent: true; side: double"></a-ring>
+
+        <!-- Sun - center of solar system -->
+        <a-sphere 
+            id="sun"
+            src="#sun-texture"
+            radius="10"
+            position="0 0 0"
+            material="emissive: #FF6600; emissiveIntensity: 0.3"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear">
+            <a-light type="point" intensity="3" distance="300" decay="0.3" color="#FFDD88"></a-light>
+        </a-sphere>
+
+        <!-- Mercury - closest to sun, fastest orbit -->
+        <a-entity id="mercury-orbit" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear">
+            <a-sphere 
+                id="mercury"
+                src="#mercury-texture"
+                radius="1.2"
+                position="20 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear">
+            </a-sphere>
+        </a-entity>
+
+        <!-- Venus -->
+        <a-entity id="venus-orbit" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 6000; easing: linear">
+            <a-sphere 
+                id="venus"
+                src="#venus-texture"
+                radius="2"
+                position="30 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 5000; easing: linear">
+            </a-sphere>
+        </a-entity>
+
+        <!-- Earth -->
+        <a-entity id="earth-orbit" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 8000; easing: linear">
+            <a-sphere 
+                id="earth"
+                src="#earth-texture"
+                radius="2.2"
+                position="40 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear">
+            </a-sphere>
+        </a-entity>
+
+        <!-- Mars -->
+        <a-entity id="mars-orbit" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+            <a-sphere 
+                id="mars"
+                src="#mars-texture"
+                radius="1.8"
+                position="55 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 4500; easing: linear">
+            </a-sphere>
+        </a-entity>
+
+        <!-- Jupiter - largest planet -->
+        <a-entity id="jupiter-orbit" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear">
+            <a-sphere 
+                id="jupiter"
+                src="#jupiter-texture"
+                radius="6"
+                position="80 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 2000; easing: linear">
+            </a-sphere>
+        </a-entity>
+
+        <!-- Saturn with ring -->
+        <a-entity id="saturn-orbit" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 28000; easing: linear">
+            <a-entity id="saturn-system" position="105 0 0">
+                <a-sphere 
+                    id="saturn"
+                    src="#saturn-texture"
+                    radius="5"
+                    animation="property: rotation; to: 0 360 0; loop: true; dur: 2500; easing: linear">
+                </a-sphere>
+                <!-- Saturn's ring -->
+                <a-ring
+                    src="#saturn-ring-texture"
+                    radius-inner="6.5"
+                    radius-outer="10"
+                    rotation="-75 0 0"
+                    material="side: double; transparent: true; opacity: 0.9">
+                </a-ring>
+            </a-entity>
+        </a-entity>
+
+        <!-- Uranus -->
+        <a-entity id="uranus-orbit" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 40000; easing: linear">
+            <a-sphere 
+                id="uranus"
+                src="#uranus-texture"
+                radius="3.5"
+                position="130 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 3500; easing: linear">
+            </a-sphere>
+        </a-entity>
+
+        <!-- Neptune - farthest, slowest orbit -->
+        <a-entity id="neptune-orbit" 
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 50000; easing: linear">
+            <a-sphere 
+                id="neptune"
+                src="#neptune-texture"
+                radius="3.3"
+                position="160 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 3800; easing: linear">
+            </a-sphere>
+        </a-entity>
+
+        <!-- Ambient light for visibility -->
+        <a-light type="ambient" intensity="0.5" color="#FFFFFF"></a-light>
+        <a-light type="directional" intensity="0.3" position="0 1 0" color="#FFFFFF"></a-light>
+
+        <!-- Camera positioned to view the entire solar system from an angle -->
+        <a-entity id="camera-rig" position="0 100 220" rotation="-25 0 0">
+            <a-camera look-controls wasd-controls fov="90">
+                <a-cursor color="#FFFFFF"></a-cursor>
+            </a-camera>
+        </a-entity>
+    </a-scene>
+</body>
+</html>
